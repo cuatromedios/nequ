@@ -11,7 +11,7 @@ From the backend directory:
 |---------|-------------|
 |`npm run migrate` | Run all pending migrations |
 |`npm run migration:create migration_name`  | Creates a new migration file |
-|`npm run migration:rever` | Reverts the last ran migration |
+|`npm run migration:revert` | Reverts the last ran migration |
 |`npm run migration:refresh` | Undos **all** migrations and then runs them again|
 
 ## Seeds
