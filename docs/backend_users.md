@@ -11,6 +11,12 @@ authentication
 To obtain a token send a matching `email` and `password` 
 combination to the `/api/login` endpoint.
 
+## Initial user 🔑
+
+When migrations run for the first time, an admin user
+will be generated, look for the randomly email and password 
+inside the output of where the migration was ran.
+
 ## Relevant routes 🗂
 
 | path | method | description |

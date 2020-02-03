@@ -1,4 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from 'typeorm'
+import * as uuid from 'uuid/v4'
+import * as bcrypt from 'bcrypt'
 
 export class users0000000000001 implements MigrationInterface {
 
@@ -15,6 +17,22 @@ export class users0000000000001 implements MigrationInterface {
         {name: 'updated_at', type: 'timestamp(0) without time zone', default: 'NOW()'}
       ]
     }))
+
+    // Generate a random admin
+    const password = uuid().replace(/-/g, '')
+    const hashed = bcrypt.hashSync(password, 10)
+    await queryRunner.query(`
+      INSERT INTO users (email, password, first_name, last_name) 
+      VALUES ($1, $2, $3, $4)`, ['admin@nequ.dev', hashed, 'Ne', 'Qu'])
+    console.log(`
+    @@@@@@@@@@@@@@@@@@@@
+    
+    NeQu ADMIN GENERATED
+    email: admin@nequ.dev
+    password: ${password}
+    
+    @@@@@@@@@@@@@@@@@@@@
+    `)
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
