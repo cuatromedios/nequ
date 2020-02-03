@@ -11,4 +11,5 @@ import {Token} from './token.entity'
   imports: [TypeOrmModule.forFeature([Token]), UserModule],
   exports: [AuthService]
 })
-export class AuthModule {}
+export class AuthModule {
+}
