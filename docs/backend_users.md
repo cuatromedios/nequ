@@ -36,7 +36,7 @@ controller routes to access it, for example:
 
 ```typescript
 @Get('example_route')
-doSomethingWithUser(@Body() user: User) {
+doSomethingWithUser(@Body('user') user: User) {
   return user.email
 }
 ```

@@ -34,7 +34,8 @@ export class AuthService {
     rawToken = rawToken.split(' ')[1]
     let hashed = sha256(rawToken)
     let token = await this.tokenRepo.findOne({token: hashed})
-    return this.userRepo.findOne(token?.user_id)
+    if (!token) return null
+    return this.userRepo.findOne(token.user_id)
   }
 
   me(user: User) {
@@ -53,7 +54,13 @@ export class AuthService {
     return {token}
   }
 
-  logout() {
-
+  async logout(token) {
+    token = token.split(' ')[1]
+    let hashed = sha256(token)
+    await this.tokenRepo.createQueryBuilder()
+      .delete()
+      .where({token: hashed})
+      .execute()
+    return {}
   }
 }
