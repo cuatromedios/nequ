@@ -7,3 +7,5 @@ The backend is based on nestjs with some opinionated features enabled by default
 - [Users and Authentication](backend_users.md)
 - User grants and permissions *TBD*
 - Generic entity endpoint *TBD*
+
+For anything not covered in here, refer to the [NestJS documentation 🦁](https://docs.nestjs.com/).
