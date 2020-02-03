@@ -10,3 +10,24 @@ authentication
 
 To obtain a token send a matching `email` and `password` 
 combination to the `/api/login` endpoint.
+
+## Authentication middleware
+
+By default, all routes have the authentication middleware applied
+except for the login route, to exclude another route from authentication
+add it to `routesWithoutAuth` inside `/backend/src/common/middleware/auth.middleware.ts`.
+
+The authentication middleware will take the bearer token sent by
+the client and get the user that corresponds to that token, if it
+doesn't exists it will return a `403` status error and will not enter
+to the route.
+
+If the user is found it will be appended to the request allowing
+controller routes to access it, for example:
+
+```typescript
+@Get('example_route')
+doSomethingWithUser(@Body() user: User) {
+  return user.email
+}
+```

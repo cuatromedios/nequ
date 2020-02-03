@@ -7,6 +7,8 @@ import * as bcrypt from 'bcrypt'
 import * as uuid from 'uuid/v4'
 import {Token} from './token.entity'
 
+const sha256 = require('sha256')
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,6 +26,14 @@ export class AuthService {
     token.token = rawToken
     await this.tokenRepo.save(token)
     return rawToken
+  }
+
+  async userFromToken(rawToken) {
+    if (!rawToken) return null
+    rawToken = rawToken.split(' ')[1]
+    let hashed = sha256(rawToken)
+    let token = await this.tokenRepo.findOne({token: hashed})
+    return this.userRepo.findOne(token?.user_id)
   }
 
   me() {
