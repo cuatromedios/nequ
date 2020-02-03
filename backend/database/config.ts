@@ -1,4 +1,5 @@
 import {ConnectionOptions} from 'typeorm'
+import {User} from '../src/user/user.entity'
 
 const config = (): ConnectionOptions => {
   return {
@@ -9,7 +10,9 @@ const config = (): ConnectionOptions => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     logging: process.env.APP_ENV === 'local',
-    entities: [],
+    entities: [
+      User
+    ],
     synchronize: false
   }
 }

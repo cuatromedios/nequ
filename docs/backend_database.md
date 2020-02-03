@@ -19,7 +19,7 @@ CREATE EXTENSION "uuid-ossp";
 
 Make sure the database isn't reachable from outside your computer/server
 
-## TypeORM commands
+## TypeORM
 
 NeQu uses TypeORM as its ORM and it's configured by 
 default to use migrations from the `/backend/database/migrations` 
@@ -34,6 +34,9 @@ From the backend directory:
 |`npm run migration:create migration_name`  | Creates a new migration file |
 |`npm run migration:revert` | Reverts the last ran migration |
 |`npm run migration:refresh` | Undos **all** migrations and then runs them again|
+
+Entities should be added to `/backend/database/config.ts` to be able to use them
+inside modules
 
 ## Seeds
 
