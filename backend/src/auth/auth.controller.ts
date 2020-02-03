@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Post} from '@nestjs/common'
 import {AuthService} from './auth.service'
 import {LoginDto} from './dto/login.dto'
+import {User} from '../user/user.entity'
 
 @Controller()
 export class AuthController {
@@ -8,8 +9,8 @@ export class AuthController {
   }
 
   @Get('me')
-  me() {
-    return this.service.me()
+  me(@Body('user') user: User) {
+    return this.service.me(user)
   }
 
   @Post('login')

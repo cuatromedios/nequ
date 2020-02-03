@@ -11,7 +11,16 @@ authentication
 To obtain a token send a matching `email` and `password` 
 combination to the `/api/login` endpoint.
 
-## Authentication middleware
+## Relevant routes 🗂
+
+| path | method | description |
+|------|--------|-------------|
+|`/api/login`|`POST`|Receives email and password and returns an auth token|
+|`/api/me`|`GET`|Returns the user that belongs to the bearer token sent through headers|
+|`/api/logout`|`DELETE`|Invalidates the bearer token sent through headers|
+
+
+## Authentication middleware 👮‍♀️
 
 By default, all routes have the authentication middleware applied
 except for the login route, to exclude another route from authentication

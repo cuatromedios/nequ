@@ -6,6 +6,7 @@ import {Repository} from 'typeorm'
 import * as bcrypt from 'bcrypt'
 import * as uuid from 'uuid/v4'
 import {Token} from './token.entity'
+import {classToPlain} from 'class-transformer'
 
 const sha256 = require('sha256')
 
@@ -36,8 +37,8 @@ export class AuthService {
     return this.userRepo.findOne(token?.user_id)
   }
 
-  me() {
-
+  me(user: User) {
+    return classToPlain(user)
   }
 
   async login(dto: LoginDto) {
