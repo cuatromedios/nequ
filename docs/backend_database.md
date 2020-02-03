@@ -1,5 +1,8 @@
 # NeQu Database migrations 🗃
 
+NeQu preferred database is PostgreSQL, it's configured to use
+the default connection settings, to change them edit the .env file
+
 NeQu uses TypeORM as its ORM and it's configured by 
 default to use migrations from the `/backend/database/migrations` 
 directory, there are several preconfigured commands to
