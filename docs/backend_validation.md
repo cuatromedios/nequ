@@ -1,7 +1,8 @@
 # NeQu Validation ☑️
 
-Validation in NeQu is done by the global validation pipe that
-comes with nest, it has the whitelist option enabled by default.
+Validation in NeQu is done by the 
+[global validation pipe](https://docs.nestjs.com/techniques/validation#auto-validation) 
+that comes with nest, it has the whitelist option enabled by default.
 
 Validation exceptions are handled by 
 `/backend/src/common/exceptions.filter.ts`
