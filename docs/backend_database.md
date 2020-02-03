@@ -3,6 +3,24 @@
 NeQu preferred database is PostgreSQL, it's configured to use
 the default connection settings, to change them edit the .env file
 
+## Initial configurations
+
+To create a database configured for the defaults of nequ run the following:
+```sql
+CREATE DATABASE nequ;
+CREATE ROLE nequ WITH LOGIN PASSWORD 'nequ';
+ALTER DATABASE nequ OWNER TO nequ;
+```
+The database requires the `uuid-ossp` extension, to install it run the
+following command from within the database
+```sql
+CREATE EXTENSION "uuid-ossp";
+```
+
+Make sure the database isn't reachable from outside your computer/server
+
+## TypeORM commands
+
 NeQu uses TypeORM as its ORM and it's configured by 
 default to use migrations from the `/backend/database/migrations` 
 directory, there are several preconfigured commands to
