@@ -3,22 +3,21 @@ import {getRepository} from 'typeorm'
 import {User} from '../src/user/user.entity'
 import {build, hasKeys, Suite} from './test-utils'
 
-describe('Authentication (e2e)', () => {
+describe('Authentication', () => {
   let suite: Suite
   beforeAll(async () => suite = await build())
   beforeEach(async () => await suite.runner.startTransaction())
   afterEach(async () => await suite.runner.rollbackTransaction())
   afterAll(async () => await suite.app.close())
 
-  it('/api/login (POST)', async () => {
+  it('Can log in and use the token to retrieve itself', async () => {
     const repo = getRepository(User, suite.db.name)
-    const user = repo.merge(new User(), {
+    await repo.insert({
       email: 'test@nequ.dev',
       password: '12345678',
       first_name: 'Ne',
       last_name: 'Qu'
     })
-    await repo.save(user)
     let token: string
     await request(suite.app.getHttpServer())
       .post('/api/login')
