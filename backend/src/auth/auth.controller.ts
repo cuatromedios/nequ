@@ -10,7 +10,7 @@ export class AuthController {
   }
 
   @Get('me')
-  me(@Body('user') user: User) {
+  me(@Body('user') user: User | any) {
     return this.service.me(user)
   }
 

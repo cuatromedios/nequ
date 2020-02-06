@@ -1,7 +1,8 @@
-import {BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
-import {IsDate, IsEmail, IsString, IsUUID} from 'class-validator'
+import {BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
+import {IsArray, IsDate, IsEmail, IsObject, IsString, IsUUID} from 'class-validator'
 import * as bcrypt from 'bcrypt'
-import {Expose} from 'class-transformer'
+import {Exclude, Expose} from 'class-transformer'
+import {Grant} from './grant.entity'
 
 @Entity('users')
 export class User {
@@ -25,6 +26,27 @@ export class User {
     return `${this.first_name} ${this.last_name}`
   }
 
+  @Expose() @IsArray()
+  get grants(): Array<string> {
+    if (!this.raw_grants) return []
+    return this.raw_grants
+      .filter(grant => grant.entity_id === null)
+      .map(grant => grant.name)
+  }
+
+  @Expose() @IsObject()
+  get entity_grants(): Object {
+    if (!this.raw_grants) return {}
+    const grants = {}
+    this.raw_grants
+      .filter(grant => !!grant.entity_id)
+      .forEach(grant => {
+        if (!grants[grant.entity_id]) grants[grant.entity_id] = []
+        grants[grant.entity_id].push(grant.name)
+      })
+    return grants
+  }
+
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {
@@ -32,4 +54,8 @@ export class User {
       this.password = bcrypt.hashSync(this.password, 10)
     }
   }
+
+  @Exclude()
+  @OneToMany(type => Grant, m => m.user, {eager: true})
+  raw_grants: Grant[]
 }

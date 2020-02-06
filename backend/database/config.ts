@@ -1,6 +1,7 @@
 import {ConnectionOptions} from 'typeorm'
 import {User} from '../src/user/user.entity'
 import {Token} from '../src/auth/token.entity'
+import {Grant} from '../src/user/grant.entity'
 
 const config = (): ConnectionOptions => {
   return {
@@ -13,7 +14,8 @@ const config = (): ConnectionOptions => {
     logging: false,
     entities: [
       User,
-      Token
+      Token,
+      Grant,
     ],
     synchronize: false
   }
