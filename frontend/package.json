@@ -8,6 +8,7 @@
   "author": "Ramses <ramses@cuatromedios.com>",
   "private": true,
   "scripts": {
+    "dev": "quasar dev",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -23,7 +24,10 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
-    "eslint-plugin-vue": "^5.0.0"
+    "eslint-plugin-vue": "^5.0.0",
+    "quasar-app-extension-api-wrapper": "0.0.2",
+    "quasar-app-extension-nequ-components": "^0.1.0",
+    "quasar-app-extension-vuelidate-rules": "^0.2.0"
   },
   "engines": {
     "node": ">= 10.18.1",

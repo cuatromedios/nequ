@@ -45,7 +45,7 @@
 import EssentialLink from 'components/EssentialLink'
 
 export default {
-  name: 'MainLayout',
+  name: 'InternalLayout',
 
   components: {
     EssentialLink

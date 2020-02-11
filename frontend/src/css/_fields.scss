@@ -1,0 +1,33 @@
+.nq-input-field, .nq-select {
+  font-size: 1.5em;
+  font-family: $mono-font;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+.nq-input-percentage .q-field__append {
+  color: $grey-7;
+  font-size: $body-font-size * 1.5;
+  line-height: 100%;
+}
+.nq-input-currency .q-field__append {
+  color: $grey-6;
+  font-size: $body-font-size * 1.25;
+}
+.nq-component {
+  .q-field__control {
+    background-color: lighten($bg-color, 4);
+  }
+  &.q-field--standard {
+    .q-field__control {
+      background-color: transparent;
+    }
+  }
+  &.q-field--focused {
+    .q-field__control {
+      background-color: lighten($bg-color, 10);
+    }
+    .q-field__native {
+      color: darken($primary, 25);
+    }
+  }
+}
