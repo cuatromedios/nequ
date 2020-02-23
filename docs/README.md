@@ -2,6 +2,9 @@
 
 ## Backend
 
+The API Reference is built with Swagger, once the project it running it
+will be available at [https://localhost:3000/docs](https://localhost:3000/docs)
+
 The backend is based on nestjs with some opinionated features enabled by default, main features:
 - [Database migrations](backend_database.md)
 - [Validation](backend_validation.md)

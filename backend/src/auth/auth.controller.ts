@@ -3,7 +3,10 @@ import {Request} from 'express'
 import {AuthService} from './auth.service'
 import {LoginDto} from './dto/login.dto'
 import {User} from '../user/user.entity'
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger'
 
+@ApiBearerAuth()
+@ApiTags('Authentication')
 @Controller()
 export class AuthController {
   constructor(private readonly service: AuthService) {

@@ -26,9 +26,10 @@
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",
-    "@nestjs/config": "latest",
+    "@nestjs/config": "^0.2.4",
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.7.2",
+    "@nestjs/swagger": "^4.3.1",
     "@nestjs/typeorm": "^6.2.0",
     "bcrypt": "latest",
     "class-transformer": "latest",
@@ -38,6 +39,7 @@
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
     "sha256": "^0.2.0",
+    "swagger-ui-express": "^4.1.3",
     "typeorm": "^0.2.22"
   },
   "devDependencies": {
