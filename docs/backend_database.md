@@ -11,11 +11,6 @@ CREATE DATABASE nequ;
 CREATE ROLE nequ WITH LOGIN PASSWORD 'nequ';
 ALTER DATABASE nequ OWNER TO nequ;
 ```
-The database requires the `uuid-ossp` extension, to install it run the
-following command from within the database
-```sql
-CREATE EXTENSION "uuid-ossp";
-```
 
 Make sure the database isn't reachable from outside your computer/server
 
