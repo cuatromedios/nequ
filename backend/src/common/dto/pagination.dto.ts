@@ -4,11 +4,11 @@ import {Expose, Transform} from 'class-transformer'
 
 export class PaginationDto {
   @Transform(n => parseInt(n))
-  @IsOptional() @IsInt() @Min(0)
+  @IsOptional() @IsInt() @Min(1)
   @ApiProperty({example: 25, required: false})
   take: number
   @Transform(n => parseInt(n))
-  @IsInt() @IsInt() @Min(0)
+  @IsOptional() @IsInt() @Min(0)
   @ApiProperty({example: '0', required: false})
   skip: number
 
