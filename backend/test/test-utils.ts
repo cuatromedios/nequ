@@ -1,7 +1,7 @@
 import {Test, TestingModule} from '@nestjs/testing'
 import {AppModule} from '../src/app.module'
 import {INestApplication, ValidationPipe} from '@nestjs/common'
-import {GlobalExceptionsFilter} from '../src/common/exceptions.filter'
+import {GlobalExceptionsFilter} from '../src/common/filters/exceptions.filter'
 import {Connection, QueryRunner} from 'typeorm'
 
 export class Suite {
