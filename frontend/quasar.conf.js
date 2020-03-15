@@ -1,6 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
-
+const package = require('./package.json')
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
@@ -48,7 +48,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -56,6 +56,10 @@ module.exports = function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
+      env: {
+        VERSION: `"V${package.version}"`,
+        API_URL: JSON.stringify(process.env.API_URL ? process.env.API_URL : ctx.dev ? 'http://127.0.0.1:3000/api' : '/api')
+      },
       scopeHoisting: true,
       vueRouterMode: 'history', // available values: 'hash', 'history'
       showProgress: true,

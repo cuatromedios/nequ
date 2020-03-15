@@ -6,6 +6,9 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  async mounted () {
+    this.$api.baseURL = process.env.API_URL
+  }
 }
 </script>
