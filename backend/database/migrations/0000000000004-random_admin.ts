@@ -2,22 +2,9 @@ import {MigrationInterface, QueryRunner, Table} from 'typeorm'
 import * as uuid from 'uuid/v4'
 import * as bcrypt from 'bcrypt'
 
-export class users0000000000003 implements MigrationInterface {
+export class random_admin0000000000004 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.createTable(new Table({
-      name: 'users',
-      columns: [
-        {name: 'id', type: 'uuid', isPrimary: true, default: 'uuid_generate_v4()'},
-        {name: 'email', type: 'text'},
-        {name: 'password', type: 'text'},
-        {name: 'first_name', type: 'text'},
-        {name: 'last_name', type: 'text'},
-        {name: 'created_at', type: 'timestamp(0) without time zone', default: 'NOW()'},
-        {name: 'updated_at', type: 'timestamp(0) without time zone', default: 'NOW()'}
-      ]
-    }))
-
     // Generate a random admin
     const password = uuid().replace(/-/g, '')
     const hashed = bcrypt.hashSync(password, 10)
@@ -37,11 +24,13 @@ export class users0000000000003 implements MigrationInterface {
     
     @@@@@@@@@@@@@@@@@@@@
     `)
+
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.query('DROP TABLE users CASCADE')
+    await queryRunner.query(`DELETE FROM grants WHERE user_id=(SELECT id FROM users WHERE email='admin@nequ.dev')`)
+    await queryRunner.query(`DELETE FROM users WHERE email='admin@nequ.dev'`,)
   }
 
 }
-
