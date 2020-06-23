@@ -1,7 +1,7 @@
 import {MiddlewareConsumer, Module} from '@nestjs/common'
 import {ConfigModule} from '@nestjs/config'
 import {TypeOrmModule} from '@nestjs/typeorm'
-import * as ormConfig from '../database/config'
+import * as ormConfig from '../database/ormconfig'
 import {UserModule} from './user/user.module'
 import {AuthModule} from './auth/auth.module'
 import {AuthMiddleware} from './common/middleware/auth.middleware'

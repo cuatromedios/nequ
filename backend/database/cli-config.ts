@@ -1,5 +1,5 @@
 import {ConnectionOptions} from 'typeorm'
-import * as ormConfig from './config'
+import * as ormConfig from './ormconfig'
 
 let conf = ormConfig()
 
