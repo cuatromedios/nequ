@@ -1,25 +1,23 @@
 import {BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
-import {IsArray, IsDate, IsEmail, IsObject, IsString, IsUUID} from 'class-validator'
+import {IsArray, IsEmail, IsObject, IsString} from 'class-validator'
 import * as bcrypt from 'bcrypt'
 import {Exclude, Expose} from 'class-transformer'
 import {Grant} from './grant.entity'
+import { BasicEntity } from 'src/common/entities/basic.entity'
 
 @Entity('users')
-export class User {
-  @PrimaryGeneratedColumn('uuid') @IsUUID()
-  id: string
+export class User extends BasicEntity {
   @Column() @IsEmail()
   email: string
+
   @Column({select: false})
   password: string
+
   @Column() @IsString()
   first_name: string
+
   @Column() @IsString()
   last_name: string
-  @Column() @IsDate()
-  created_at: string
-  @Column() @IsDate()
-  updated_at: string
 
   @Expose() @IsString()
   get name(): string {
@@ -30,8 +28,8 @@ export class User {
   get grants(): Array<string> {
     if (!this.raw_grants) return []
     return this.raw_grants
-      .filter(grant => grant.entity_id === null)
-      .map(grant => grant.name)
+      .filter(grant => grant.entity_id === null) // Only those with null entity_id (without a specific entity the grants apply to all the entities)
+      .map(grant => grant.name) // Just the names
   }
 
   @Expose() @IsObject()
@@ -39,8 +37,8 @@ export class User {
     if (!this.raw_grants) return {}
     const grants = {}
     this.raw_grants
-      .filter(grant => !!grant.entity_id)
-      .forEach(grant => {
+      .filter(grant => !!grant.entity_id) // Only those related to an entity
+      .forEach(grant => { // Mapped in an dictionary of type {'entity_id':[..grants-names]}
         if (!grants[grant.entity_id]) grants[grant.entity_id] = []
         grants[grant.entity_id].push(grant.name)
       })
