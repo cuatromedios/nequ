@@ -25,7 +25,7 @@
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
-    "quasar-app-extension-api-wrapper": "0.0.2",
+    "quasar-app-extension-api-wrapper": "^0.0.9",
     "quasar-app-extension-nequ-components": "^0.3.1",
     "quasar-app-extension-vuelidate-rules": "^0.2.0"
   },
