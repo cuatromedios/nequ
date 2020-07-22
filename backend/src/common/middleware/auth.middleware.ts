@@ -1,6 +1,6 @@
-import {HttpException, Injectable, NestMiddleware} from '@nestjs/common'
-import {Request, Response} from 'express'
-import {AuthService} from '../../auth/auth.service'
+import { HttpException, Injectable, NestMiddleware } from '@nestjs/common'
+import { Request, Response } from 'express'
+import { AuthService } from '../../auth/auth.service'
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -8,11 +8,18 @@ export class AuthMiddleware implements NestMiddleware {
   }
 
   async use(req: Request, res: Response, next: Function) {
-    const routesWithoutAuth = ['/api/login']
-    if (routesWithoutAuth.includes(req.baseUrl)) return next()
+    // Reads the Authorization header looking dor a Bearer or APIKey token
+    // Is there is a token then a user is retrieved in the body.user property
+
     const user = await this.auth.userFromToken(req.header('Authorization'))
-    if (!user) throw new HttpException({message: 'auth_needed'}, 403)
+
+    if (!user) {
+      next()
+      return
+    }
+
     req.body.user = user
     next()
+    return
   }
 }
